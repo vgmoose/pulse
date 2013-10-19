@@ -45,7 +45,7 @@ pulse.readyCallbacks = [];
 pulse.isReady = false;
 pulse.ready = function(callback) {
   if(document.readyState === "complete") {
-    pulse.isReady = true
+      pulse.isReady = true;
   }
   if(pulse.isReady) {
     setTimeout(callback, 1)
@@ -54,6 +54,8 @@ pulse.ready = function(callback) {
 };
 pulse.DOMContentLoaded = function() {
   if(pulse.isReady) {
+      pulse.that._private.mainDiv.focus();
+      pulse.that.focused = true;
     return
   }
   pulse.isReady = true;
@@ -3534,6 +3536,7 @@ pulse.Engine = PClass.extend({init:function(params) {
   this.loopLogic = null;
   this._private.currentTime = (new Date).getTime();
   this._private.lastTime = this._private.currentTime;
+                             pulse.that = this;
   pulse.plugins.invoke("pulse.Engine", "init", pulse.plugin.PluginCallbackTypes.onExit, this, arguments)
 }, getWindowOffset:function() {
   var offX = this._private.mainDiv.offsetLeft;
