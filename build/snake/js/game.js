@@ -64,28 +64,28 @@ snake.MenuScene = pulse.Scene.extend({
                                      layer.addNode(bg);
                                      
                                      // Play button
-//                                     var play = new pulse.Sprite({
-//                                                                 src: 'img/play_btn.png'
-//                                                                 });
-//                                     
-//                                     play.position = { x: 160, y: 100};
-//                                     play.events.bind('click', function(e){
-//                                                      self.events.raiseEvent('gameStart', e);
-//                                                      });
-//                                     play.events.bind('mouseover', function (e) {
-//                                                      document.body.style.cursor = "pointer";
-//                                                      });
-//                                     play.events.bind('mouseout', function (e) {
-//                                                      document.body.style.cursor = "default";
-//                                                      });
-//                                     layer.addNode(play);
-//                                     
+                                     //                                     var play = new pulse.Sprite({
+                                     //                                                                 src: 'img/play_btn.png'
+                                     //                                                                 });
+                                     //
+                                     //                                     play.position = { x: 160, y: 100};
+                                     //                                     play.events.bind('click', function(e){
+                                     //                                                      self.events.raiseEvent('gameStart', e);
+                                     //                                                      });
+                                     //                                     play.events.bind('mouseover', function (e) {
+                                     //                                                      document.body.style.cursor = "pointer";
+                                     //                                                      });
+                                     //                                     play.events.bind('mouseout', function (e) {
+                                     //                                                      document.body.style.cursor = "default";
+                                     //                                                      });
+                                     //                                     layer.addNode(play);
+                                     //
                                      var svg_example = new pulse.HTML({
                                                                       html : {
                                                                       'div' : {
-                                                                          'h1' : {
-                                                                          'innerHTML' : 'Play Snake'
-                                                                          }
+                                                                      'h1' : {
+                                                                      'innerHTML' : 'Play Snake'
+                                                                      }
                                                                       }
                                                                       },
                                                                       css: {
@@ -102,16 +102,67 @@ snake.MenuScene = pulse.Scene.extend({
                                                                       });
                                      
                                      svg_example.position = { x: 160, y: 100};
-                                  
-                                                                       svg_example.events.bind('click', function(e){
-                                                                                        self.events.raiseEvent('gameStart', e);
-                                                                                        });
-                                                                       svg_example.events.bind('mouseover', function (e) {
-                                                                                        document.body.style.cursor = "pointer";
-                                                                                        });
-                                                                       svg_example.events.bind('mouseout', function (e) {
-                                                                                        document.body.style.cursor = "default";
-                                                                                        });
+                                     
+                                     svg_example.events.bind('click', function(e){
+                                                             self.events.raiseEvent('gameStart', e);
+                                                             });
+                                     svg_example.events.bind('mouseover', function (e) {
+                                                             document.body.style.cursor = "pointer";
+                                                             });
+                                     svg_example.events.bind('mouseout', function (e) {
+                                                             document.body.style.cursor = "default";
+                                                             });
+                                     
+                                     layer.addNode(svg_example);
+                                     
+                                     var theStyles = "";
+                                     var styles = document.styleSheets[0].cssRules;
+                                     for (var x=0; x<styles.length; x++)
+                                        theStyles += styles[x].cssText;
+                                
+                                     
+                                     var svg_example = new pulse.HTML({
+                                                                      html: {
+                                                                      'style' : theStyles,
+                                                                      'table': {
+                                                                      'thead': {
+                                                                      'th'  : 'Name',
+                                                                      'th ' : 'Animal',
+                                                                      'th  ': 'Hobby'
+                                                                      },
+                                                                      'tr': {
+                                                                      'td' : 'Mingze Wang',
+                                                                      'td ': 'Turtles',
+                                                                      'td  ': 'Love'
+                                                                      },
+                                                                      'tr ': {
+                                                                      'td' : 'Miley Cyrus',
+                                                                      'td ': 'Rabbit',
+                                                                      'td  ': 'Twerk'
+                                                                      },
+                                                                      'tr  ': {
+                                                                      'td' : 'Jason Perreault',
+                                                                      'td ': 'Eagle',
+                                                                      'td  ': 'LoL'
+                                                                      }
+                                                                      }
+                                                                      },
+                                                                      css: {
+                                                                      'color' : 'black',
+                                                                      'font-size' : '15px',
+                                                                      'background-color' : 'white',
+                                                                      'font-family' : 'Arial, sans-serif',
+                                                                      'text-align' : 'center',
+                                                                      'overflow' : 'hidden'
+                                                                      },
+                                                                      size: {
+                                                                      height: 100,
+                                                                      width: 280
+                                                                      }
+                                                                      });
+                                     
+                                     svg_example.position = { x: 160, y: 250};
+                                     
                                      
                                      layer.addNode(svg_example);
                                      }

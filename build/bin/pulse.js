@@ -2916,28 +2916,53 @@ pulse.BitmapFont = pulse.Asset.extend({init:function(params) {
                                                                        pulse.plugins.invoke("pulse.HTML", "init", pulse.plugin.PluginCallbackTypes.onEnter, this, arguments);
                                                                        
                                                                        var css = params.css;
+                                                                       if (!params.css)
+                                                                            css = {};
                                                                        var parsedCss = "";
                                                                        
+                                                                       
+                                                                       if (!params.size)
+                                                                       {
+                                                                            params.html = "size<br />parameter<br />required";
+                                                                       css = {'background-color' : 'red', 'text-align' : 'center', 'color' : 'white'};
+                                                                            params.size = {width: 200, height: 70};
+                                                                       }
+                                                                       
+                                                                       if (!css['font-family'])
+                                                                            css['font-family'] = 'Arial, sans-serif';
+                                                                       if (!css['font-size'])
+                                                                            css['font-size'] = '20px';
+                                                                       if (!css['text-align'])
+                                                                            css['text-align'] = 'center';
+                                                                       
+                                                                       css.width = params.size.width + 'px';
+                                                                       css.height = params.size.height + 'px';
+
                                                                        for (var key in css) {
                                                                             var obj = css[key];
                                                                             parsedCss += key + ": " + obj + ";";
                                                                        }
                                                                        
                                                                        var html = params.html;
+                                                                       console.log(html);
+
                                                                        
                                                                        function parseHTML(html)
                                                                        {
                                                                             var string = "";
-                                                                               if (typeof html !== 'object')
+                                                                            if (typeof html !== 'object')
                                                                                 return html;
-                                                                           for (var key in html) {
-                                                                           var obj = html[key];
-                                                                                string += "<"+key+">" + parseHTML(obj) + "</"+key+">";
-                                                                           }
+                                                                            for (var key in html) {
+                                                                                var obj = html[key];
+                                                                                string += "<"+key+">" + parseHTML(obj) + "</"+key.split(" ")[0]+">";
+                                                                                }
                                                                             return string;
                                                                        }
                                                                        
-                                                                       var parsedHtml = parseHTML(html);
+                                                                       if (typeof html === 'object')
+                                                                            var parsedHtml = parseHTML(html);
+                                                                       else
+                                                                            var parsedHtml = html;
                                                                        
                                                                     var svg = "<svg xmlns='http://www.w3.org/2000/svg' width='"+params.size.width+"' height='"+params.size.height+"'>" +
                                                                        "<foreignObject width='100%' height='100%'>" +
