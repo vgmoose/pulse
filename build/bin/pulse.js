@@ -2971,7 +2971,7 @@ pulse.BitmapFont = pulse.Asset.extend({init:function(params) {
                                                                        "</div>" +
                                                                        "</foreignObject>" +
                                                                        "</svg>";
-                                                                       params.src = "data:image/svg+xml;utf8,"+svg;
+                                                                       params.src = "data:image/svg+xml;base64,"+btoa(svg);
                                                                        console.log(params.src);
                                                                        this._super(params);
                                                                        

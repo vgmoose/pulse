@@ -83,14 +83,14 @@ snake.MenuScene = pulse.Scene.extend({
                                      var svg_example = new pulse.HTML({
                                                                       html : {
                                                                       'div' : {
-                                                                      'h1' : {
-                                                                      'innerHTML' : 'Play Snake'
+                                                                      b :{
+                                                                      'span' : 'Play Snake'
                                                                       }
                                                                       }
                                                                       },
                                                                       css: {
                                                                       'color' : 'white',
-                                                                      'font-size' : '18px',
+                                                                      'font-size' : '35px',
                                                                       'background-color' : 'green',
                                                                       'font-family' : 'Arial, sans-serif',
                                                                       'border-radius' : '25px',
@@ -116,7 +116,7 @@ snake.MenuScene = pulse.Scene.extend({
                                      layer.addNode(svg_example);
                                      
                                      var theStyles = "";
-                                     var styles = document.styleSheets[0].cssRules;
+                                     var styles = document.styleSheets[0].cssRules || document.styleSheets[0].rules;
                                      for (var x=0; x<styles.length; x++)
                                         theStyles += styles[x].cssText;
                                 
