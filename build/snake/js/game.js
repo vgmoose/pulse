@@ -161,10 +161,42 @@ snake.MenuScene = pulse.Scene.extend({
                                                                       }
                                                                       });
                                      
-                                     svg_example.position = { x: 160, y: 250};
+//                                     var svg_example_t = new pulse.Texture({
+//                                                                           filename: 'squirrel.png',
+//                                                                        
+//                                     });
                                      
+                                     var svg_example2 = new pulse.Sprite({
+                                                                        src: 'squirrel.png',
+                                                                        healthBar: true,
+                                                                        percent: .8,
+                                                                        canvasOperations: "var imd = null;\
+                                                                        var circ = Math.PI * 2;\
+                                                                        var quart = Math.PI / 2;\
+                                                                        \
+                                                                        ctx.beginPath();\
+                                                                        ctx.strokeStyle = 'rgba(153,204,51,0.6)';\
+                                                                        ctx.lineCap = 'square';\
+                                                                        ctx.closePath();\
+                                                                        ctx.fill();\
+                                                                        ctx.lineWidth = 5.0;\
+                                                                        \
+                                                                        imd = ctx.getImageData(0, 0, 50, 50);\
+                                                                        \
+                                                                        ctx.putImageData(imd, 0, 0);\
+                                                                        ctx.beginPath();\
+                                                                        ctx.arc(25, 25, 23, -(quart), ((circ) * this.percent) - quart, false);\
+                                                                        ctx.stroke();"
+                                                                        
+                                     });
+                                     
+                                     svg_example.position = { x: 160, y: 250};
+                                     svg_example2.position = { x: 160, y: 160};
+
                                      
                                      layer.addNode(svg_example);
+                                     layer.addNode(svg_example2);
+
                                      }
                                      });
 

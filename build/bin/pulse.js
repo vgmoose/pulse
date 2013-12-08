@@ -1846,7 +1846,7 @@ pulse.Texture = pulse.Asset.extend({init:function(params) {
                                    pulse.error.InvalidSource()
                                    }
                                    this._private.image = new Image;
-                                   this._private.imgCanvas = document.createElement("canvas");
+                                   this._private.imgCanvas = params.canvas || document.createElement("canvas");
                                    if(this.autoLoad === true) {
                                    this._private.image.src = this.filename
                                    }
@@ -1854,6 +1854,10 @@ pulse.Texture = pulse.Asset.extend({init:function(params) {
                                    this.scaleY = 1;
                                    this.rotation = 0;
                                    this.alpha = 100;
+                                   this.healthBar = params.healthBar || false;
+//                                   console.log(this.healthBar);
+                                   this.canvasOperations = params.canvasOperations;
+                                   this.percent = params.percent || 1;
                                    this._private.lastSlice = null;
                                    var _self = this;
                                    this._private.image.onload = function() {
@@ -1933,8 +1937,17 @@ pulse.Texture = pulse.Asset.extend({init:function(params) {
                                    }
                                    ctx.globalAlpha = this.alpha / 100;
                                    ctx.drawImage(this._private.image, x, y, sWidth, sHeight, drawX, drawY, iWidth, iHeight);
+                                   if (this.healthBar)
+                                   {
+//                                    ctx.fillRect(0,0,10,10);
+                                   eval(this.canvasOperations);
+                                   
+                                   
+
+                                   }
                                    if(pulse.DEBUG) {
                                    ctx.save();
+                                   
                                    ctx.fillStyle = "#42CCDE";
                                    ctx.beginPath();
                                    ctx.arc(this._private.imgCanvas.width / 2, this._private.imgCanvas.height / 2, 3, 0, Math.PI * 2, true);
@@ -2744,10 +2757,11 @@ pulse.BitmapFont = pulse.Asset.extend({init:function(params) {
                                                                          this.textureUpdated = true;
                                                                          params = pulse.util.checkParams(params, {src:"", size:{}});
                                                                          this.size = params.size;
+                                                                         
                                                                          if(typeof params.src === "object") {
                                                                          this.texture = params.src
                                                                          }else {
-                                                                         this.texture = new pulse.Texture({"filename":params.src})
+                                                                         this.texture = new pulse.Texture({"filename":params.src, "percent":params.percent, "healthBar":params.healthBar, "canvasOperations":params.canvasOperations})
                                                                          }
                                                                          this._private.isDragging = false;
                                                                          this._private.dragPos = false;
